@@ -15,6 +15,11 @@ services:
   php:
     container_name: php-fpm
     build:
+      args:
+        USER: ${USER}
+        UID: ${USER_ID}
+        GROUP: ${USER}
+        GID: ${USER_ID}
       context: .
       dockerfile: ./docker/php-fpm/Dockerfile
     volumes:

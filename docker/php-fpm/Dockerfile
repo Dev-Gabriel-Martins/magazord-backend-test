@@ -1,7 +1,12 @@
 FROM php:8.4-fpm
-# Essa imagem é baseada na imagem oficial do PHP 8.4 com FPM (FastCGI Process Manager).
-# Porém docker.hub.com identificou ela com 3 vulnerabilidades criticas nessa imagem.
-# Como estamos usando apenas para fins de desenvolvimentos vou manter ela, porém não é recomendada para produção.
+
+ARG USER
+ARG UID
+ARG GROUP
+ARG GID
+
+RUN addgroup --gid $GID $GROUP
+RUN adduser --disabled-password --gecos '' --uid $UID --gid $GID $USER
 
 RUN apt-get update && apt-get install -y \
     libpng-dev \
@@ -29,4 +34,7 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /var/www/html
 
-USER www-data
+RUN chown -R www-data:www-data /var/www/html
+
+USER $USER
+
