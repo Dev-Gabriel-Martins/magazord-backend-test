@@ -1,0 +1,22 @@
+{
+    "name": "dev-gabriel-martins/magazord-backend-test",
+    "description": "Tesde técnica para Desenvolvedor Backend PHP Braavo - Magazord",
+    "version": "1.0.0",
+    "authors": [
+        {
+            "name": "Gabriel Martins",
+            "email": "gabrielgmartins100@outlook.com"
+        }
+    ],
+
+    "autoload": {
+        "psr-4": {
+            "app\\": "app",
+            "core\\": "core"
+        }
+    },
+    "require": {
+        "doctrine/orm": "*",
+        "twig/twig": "^3.21"
+    }
+}
