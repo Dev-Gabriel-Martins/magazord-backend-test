@@ -7,6 +7,7 @@ use core\classes\Server;
 
 require 'vendor/autoload.php';
 require "core/functions/helpers.php";
+require "core/config.php";
 
 $server = new Server();
 
