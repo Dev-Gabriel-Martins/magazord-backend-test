@@ -35,7 +35,7 @@ class Server
                     return call_user_func_array([$controller, $controllerMethod], $matches);
 
                 } catch (\Exception $th) {
-                   $this->notFoundRequest();
+                   $this->notFoundRequest($th);
                 }
             }
         }
@@ -44,9 +44,8 @@ class Server
         echo "404 Not Found";
     }
 
-    private function notFoundRequest() {        
-        echo "404 Not Found";
-        return http_response_code(404);
+    private function notFoundRequest($th) {        
+        echo "404 Not Found: \n $th" ;        
     }
 
 }
