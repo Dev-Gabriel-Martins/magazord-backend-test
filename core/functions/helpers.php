@@ -47,7 +47,7 @@ function load_env(string $path = __DIR__ . '/../../.env'): void
 /*
  * Busca uma variável do .env carregada.
  */
-function env($key, $default = false)
+function env($key)
 {   
-    return isset($GLOBALS['DOT_ENV'][$key]) ? $GLOBALS['DOT_ENV'][$key] : $default;
+    return isset($GLOBALS['DOT_ENV'][$key]) ? $GLOBALS['DOT_ENV'][$key] : false;
 }
