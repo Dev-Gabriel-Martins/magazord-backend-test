@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Novo Usuário</title>
+</head>
+<body>
+    <h1>Novo Usuário</h1>
+    <form action="/users" method="POST">
+        <label>Nome: <input type="text" name="name" required></label><br>
+        <label>CPF: <input type="text" name="cpf" maxlength="11" required></label><br>
+        <button type="submit">Salvar</button>
+    </form>
+    <a href="/users">Voltar</a>
+</body>
+</html>

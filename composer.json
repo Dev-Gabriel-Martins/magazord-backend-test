@@ -19,6 +19,6 @@
         "doctrine/orm": "^3",
         "doctrine/dbal": "^4",
         "symfony/cache": "^7",
-        "twig/twig": "^3.21"
+        "latte/latte": "^3.0"
     }
 }

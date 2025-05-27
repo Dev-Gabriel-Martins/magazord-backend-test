@@ -4,6 +4,7 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
 
 require_once __DIR__ . '/../vendor/autoload.php';
+require_once  __DIR__ . "/functions/helpers.php";
 
 $config = ORMSetup::createAttributeMetadataConfiguration(
     paths: [__DIR__ . '/../app/models'],
