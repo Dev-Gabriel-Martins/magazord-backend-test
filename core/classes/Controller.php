@@ -10,8 +10,22 @@ class Controller
     public function render(string $template, array $params = [])
     {
         $latte = new Engine;
-        //$latte->setTempDirectory(__DIR__ . '/../../app/views/build/');
-        $latte->render(__DIR__ . '/../../app/views/' . $template . '.latte', $params);
+
+        $this->setStatusCode($params);
+        $latte->setAutoRefresh(true);
+
+        $latte->render(__DIR__ . '/../../app/views/' . $template . '.php', $params);
     }
 
+    private function setStatusCode($params)
+    {
+        $code = $params['code'] ?? 200;
+        http_response_code($code);
+    }
+
+
+    public function renderNotFound()
+    {
+       $this->render("not-found", ['code' => 404]);
+    }
 }
