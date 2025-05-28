@@ -73,11 +73,12 @@ class ContactController extends Controller
     public function edit($id)
     {
         $contact = $this->repo->find($id);
+        
         if (!$contact) {
-            $this->flashMessage = "Contato não encontrado.";
-            $this->index();
+             $this->renderNotFound();
             return;
         }
+
         $users = $this->userRepo->all();
         $this->render('contacts/edit', [
             'contact' => $contact,
@@ -128,10 +129,10 @@ class ContactController extends Controller
     {
         $contact = $this->repo->find($id);
         if (!$contact) {
-            $this->flashMessage = "Contato não encontrado.";
-            $this->index();
+            $this->renderNotFound();
             return;
         }
+
         $this->repo->delete($contact);
         $this->flashMessage = "Contato removido com sucesso.";
         $this->index();

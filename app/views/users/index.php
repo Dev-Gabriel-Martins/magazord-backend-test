@@ -9,8 +9,7 @@
 
 <body>
     <div class="centraliza">
-        <div>
-            <!-- Navbar -->
+        <div class="content-box">
             <nav class="navbar navbar-expand-lg navbar-light bg-white rounded shadow-sm mb-3" style="width: 28rem;">
                 <div class="container-fluid">
                     <a class="navbar-brand fw-bold" href="/users">Magazord</a>
@@ -19,8 +18,6 @@
                     </div>
                 </div>
             </nav>
-            <!-- /Navbar -->
-
             <div class="card shadow">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <span>Lista de Usuários</span>
@@ -50,7 +47,7 @@
                     {/foreach}
                 </ul>
                 {else}
-                <div class="alert alert- text-center m-3">Nenhum usuário cadastrado.</div>
+                <div class="alert text-center m-3">Nenhum usuário cadastrado.</div>
                 {/if}
             </div>
             {if isset($sucess) && trim($sucess) !== ''}
@@ -66,31 +63,35 @@
     body {
         background: #f8fafc;
     }
+
     .centraliza {
-        margin-top: 64px;
         min-height: 100vh;
         display: flex;
         align-items: flex-start;
         justify-content: center;
     }
+
     .content-box {
-        /* Espaço do topo */
-        display: flex;
+        margin-top: 12rem;
         flex-direction: column;
         align-items: center;
     }
+
     .card,
     .navbar,
     .flash-message {
         width: 28rem;
     }
+
     .flash-message {
         margin-top: 24px;
     }
+
     .list-group-item {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 </style>
+
 </html>
