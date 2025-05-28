@@ -91,9 +91,10 @@ docker compose exec php php core/bin/doctrine orm:schema-tool:create
 
 #### Extras Implementados
 
-**Validação de CPF**[✅] CPFs não pode se repetir e devem possuir 11 caracteres numericos </br>
+**Validações**[✅] CPFs não pode se repetir e devem possuir 11 caracteres numericos e campos devems ser preenchidos: </br>
 </br>
 ![image](https://github.com/user-attachments/assets/0de6830d-42a9-4491-85fe-04116777c13f)
+![image](https://github.com/user-attachments/assets/4f6b0b69-6a03-49f1-8d59-7385fd45e8af)
 
 
 **Tela de 404 NOT FOUND**[✅] </br>
