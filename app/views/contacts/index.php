@@ -25,6 +25,11 @@
                 </div>
                 {if $contacts}
                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <form method="GET" action="/contacts">
+                            <input class="form-control form-control-sm" type="search" name="search" placeholder="Pesquisar por descrição">
+                        </form>
+                    </li>
                     {foreach $contacts as $contact}
                     <li class="list-group-item">
                         <div>
