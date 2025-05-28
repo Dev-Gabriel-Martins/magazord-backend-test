@@ -90,8 +90,7 @@ class ContactController extends Controller
     {
         $contact = $this->repo->find($id);
         if (!$contact) {
-            $this->flashMessage = "Contato não encontrado.";
-            $this->index();
+             $this->renderNotFound();
             return;
         }
 
