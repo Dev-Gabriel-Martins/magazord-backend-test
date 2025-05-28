@@ -46,8 +46,8 @@
                         <input type="text" class="form-control" id="description" name="description" required value="{$contact->description()}">
                     </div>
                     <div class="d-flex justify-content-between">
-                        <a href="/contacts" class="btn btn-outline-secondary">Voltar</a>
-                        <button type="submit" class="btn btn-primary">Salvar</button>
+                        <a href="/contacts" class="btn btn-outline-secondary btn-sm">Voltar</a>
+                        <button type="submit" class="btn btn-primary btn-sm">Salvar</button>
                     </div>
                 </form>
             </div>
@@ -66,9 +66,23 @@
         justify-content: center;
     }
 
-    .card {
+    .card,
+    .flash-message {
         width: 28rem;
-        margin-top: 48px;
+    }
+
+    .card {
+        margin-top: 12rem;
+    }
+
+    .flash-message {
+        margin-top: 24px;
+    }
+
+    .list-group-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
 </style>
 

@@ -57,7 +57,7 @@ class UserController extends Controller
 
             $this->repo->create($name, $cpf);
 
-            $this->flashMessage = "Usuario Criado com sucesso";
+            $this->flashMessage = "Usuário criado com sucesso";
 
             $this->index();
         } catch (\InvalidArgumentException $e) {

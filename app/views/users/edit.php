@@ -62,7 +62,7 @@
     }
 
     .card {
-        margin-top: 15rem;
+        margin-top: 12rem;
     }
 
     .flash-message {

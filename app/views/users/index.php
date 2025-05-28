@@ -14,7 +14,7 @@
                 <div class="container-fluid">
                     <a class="navbar-brand fw-bold" href="/users">Magazord</a>
                     <div>
-                        <a class="nav-link" href="/contacts">Contatos</a>
+                        <a class="nav-btn" href="/contacts">Contatos</a>
                     </div>
                 </div>
             </nav>
