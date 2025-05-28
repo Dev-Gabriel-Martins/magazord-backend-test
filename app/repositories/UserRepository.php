@@ -24,6 +24,16 @@ class UserRepository
         return $this->em->getRepository(User::class)->findOneBy(['cpf' => $cpf]);
     }
 
+    public function searchByName(string $name): array
+    {
+        return $this->em->getRepository(User::class)
+            ->createQueryBuilder('u')
+            ->where('u.name LIKE :name')
+            ->setParameter('name', '%' . $name . '%')
+            ->getQuery()
+            ->getResult();
+    }
+
     public function all(): array
     {
         return $this->em->getRepository(User::class)->findAll();

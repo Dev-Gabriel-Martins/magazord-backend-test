@@ -8,7 +8,7 @@ use app\repositories\UserRepository;
 class UserController extends Controller
 {
     private UserRepository $repo;
-    private string $flashMessage= "";
+    private string $flashMessage = "";
 
     public function __construct()
     {
@@ -18,7 +18,12 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = $this->repo->all();
+        $search = trim($_GET['search'] ?? '');
+        if ($search !== '') {
+            $users = $this->repo->searchByName($search);
+        } else {
+            $users = $this->repo->all();
+        }
 
         $this->render('users/index', ['users' => $users, 'succes' => $this->flashMessage]);
     }
@@ -84,7 +89,7 @@ class UserController extends Controller
             $this->renderNotFound();
             return;
         }
-        
+
         $data = $_POST;
         $name = trim($data['name'] ?? '');
         $cpf = trim($data['cpf'] ?? '');
@@ -94,7 +99,7 @@ class UserController extends Controller
         if (!$name || !$cpf) {
             $errors[] = "Nome e CPF são obrigatórios.";
         }
-        
+
         $existingUser = $this->repo->findByCpf($cpf);
         if ($existingUser && $existingUser->id() != $user->id()) {
             $errors[] = "CPF já cadastrado.";

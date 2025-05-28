@@ -21,9 +21,13 @@
                     <span>Lista de Usuários</span>
                     <a href="/users/create" class="btn btn-primary btn-sm">Novo Usuário</a>
                 </div>
-
                 {if $users}
                 <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <form method="GET" action="/users">                            
+                            <input class="form-control form-control-sm" type="search" name="search" placeholder="Pesquisar por nome">
+                        </form>
+                    </li>
                     {foreach $users as $user}
                     <li class="list-group-item">
                         <div>
@@ -41,7 +45,7 @@
                     {/foreach}
                 </ul>
                 {else}
-                <div class="alert alert-info text-center m-3">Nenhum usuário cadastrado.</div>
+                <div class="alert alert- text-center m-3">Nenhum usuário cadastrado.</div>
                 {/if}
             </div>
         </div>

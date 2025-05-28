@@ -13,7 +13,6 @@ $server->route("GET", "/", [UserController::class, 'index']);
 $server->route("GET", "/users", [UserController::class, 'index']);
 $server->route("GET", "/users/create", [UserController::class, 'create']);
 $server->route("POST", "/users", [UserController::class, 'store']);
-
 $server->route("GET", "/users/{id}/edit", [UserController::class, 'edit']);
 $server->route("PUT", "/users/{id}", [UserController::class, 'update']);
 $server->route("DELETE", "/users/{id}", [UserController::class, 'destroy']);
