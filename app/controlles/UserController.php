@@ -4,11 +4,11 @@ namespace app\controlles;
 
 use core\classes\Controller;
 use app\repositories\UserRepository;
-use Doctrine\ORM\EntityManagerInterface;
 
 class UserController extends Controller
 {
     private UserRepository $repo;
+    private string $flashMessage= "";
 
     public function __construct()
     {
@@ -16,30 +16,16 @@ class UserController extends Controller
         $this->repo = new UserRepository($entityManager);
     }
 
-
     public function index()
     {
         $users = $this->repo->all();
-     
-        $this->render('users/index', ['users' => $users]);
+
+        $this->render('users/index', ['users' => $users, 'succes' => $this->flashMessage]);
     }
 
     public function create()
     {
         $this->render('users/create');
-    }
-
-    public function show($id)
-    {
-        $user = $this->repo->find($id);
-
-        if (!$user) {
-            http_response_code(404);
-            echo "Usuário não encontrado.";
-            return;
-        }
-
-        echo "ID: {$user->id()} | Nome: {$user->name()} | CPF: {$user->cpf()}";
     }
 
     public function store()
@@ -48,58 +34,98 @@ class UserController extends Controller
         $name = trim($data['name'] ?? '');
         $cpf = trim($data['cpf'] ?? '');
 
+        $errors = [];
+
         if (!$name || !$cpf) {
-            http_response_code(400);
-            echo "Nome e CPF são obrigatórios.";
-            return;
+            $errors[] = "Nome e CPF são obrigatórios.";
         }
-        if (!preg_match('/^\d{11}$/', $cpf)) {
-            http_response_code(400);
-            echo "CPF deve ter 11 dígitos numéricos.";
-            return;
-        }
+
         if ($this->repo->findByCpf($cpf)) {
-            http_response_code(400);
-            echo "CPF já cadastrado.";
+            $errors[] = "CPF já cadastrado.";
+        }
+
+        if ($errors) {
+            $this->render('users/create', ['errors' => $errors, 'old' => $data]);
             return;
         }
 
-        $user = $this->repo->create($name, $cpf);
-        http_response_code(201);
-        echo "Usuário criado com ID: " . $user->id();
+        try {
+
+            $this->repo->create($name, $cpf);
+
+            $this->flashMessage = "Usuario Criado com sucesso";
+
+            $this->index();
+        } catch (\InvalidArgumentException $e) {
+            $this->render('users/create', [
+                'errors' => [$e->getMessage()],
+                'old' => $data
+            ]);
+        }
+    }
+
+    public function edit($id)
+    {
+        $user = $this->repo->find($id);
+
+        if (!$user) {
+            $this->renderNotFound();
+            return;
+        }
+
+        $this->render('users/edit',  ['user' => $user]);
     }
 
     public function update($id)
     {
         $user = $this->repo->find($id);
+
         if (!$user) {
-            http_response_code(404);
-            echo "Usuário não encontrado.";
+            $this->renderNotFound();
             return;
         }
+        
         $data = $_POST;
         $name = trim($data['name'] ?? '');
+        $cpf = trim($data['cpf'] ?? '');
 
-        if (!$name) {
-            http_response_code(400);
-            echo "Nome é obrigatório.";
+        $errors = [];
+
+        if (!$name || !$cpf) {
+            $errors[] = "Nome e CPF são obrigatórios.";
+        }
+        
+        $existingUser = $this->repo->findByCpf($cpf);
+        if ($existingUser && $existingUser->id() != $user->id()) {
+            $errors[] = "CPF já cadastrado.";
+        }
+
+        if ($errors) {
+            $this->render('users/edit', [
+                'errors' => $errors,
+                'user' => $user
+            ]);
             return;
         }
 
-        // Não permite atualizar CPF
-        $this->repo->update($user, $name);
-        echo "Usuário atualizado.";
+        $this->repo->update($user, $name, $cpf);
+        $this->flashMessage = "Usuário atualizado com sucesso.";
+        $this->index();
     }
 
     public function destroy($id)
     {
         $user = $this->repo->find($id);
+
         if (!$user) {
-            http_response_code(404);
-            echo "Usuário não encontrado.";
+            $this->renderNotFound();
             return;
         }
+
         $this->repo->delete($user);
-        echo "Usuário e contatos removidos.";
+
+        $this->flashMessage = "Usuário excluido com sucesso";
+
+        $this->index();
     }
 }

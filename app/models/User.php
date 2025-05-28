@@ -27,7 +27,7 @@ class User
     public function __construct(string $name, string $cpf)
     {
         $this->name = $name;
-        $this->cpf = $cpf;
+        $this->setCpf($cpf);
         $this->contacts = new ArrayCollection();
     }
 
@@ -58,11 +58,17 @@ class User
             $contact->setUser($this);
         }
     }
-
-    public function removeContact(Contact $contact): void
+    
+    public function setCpf(string $cpf): void
     {
-        if ($this->contacts->removeElement($contact)) {
-            $contact->removeUser();
+        self::validateCpf($cpf);
+        $this->cpf = $cpf;
+    }
+
+    private function validateCpf(string $cpf): void
+    {
+        if (!preg_match('/^\d{11}$/', $cpf)) {
+            throw new \InvalidArgumentException("CPF deve ter 11 dígitos numéricos.");
         }
     }
 }

@@ -1,4 +1,5 @@
 <?php
+
 namespace app\repositories;
 
 use app\models\User;
@@ -36,12 +37,18 @@ class UserRepository
         return $user;
     }
 
-    public function update(User $user, string $name): User
+    public function update(User $user, string $name, string $cpf): User
     {
         $userReflection = new \ReflectionClass($user);
+
         $nameProp = $userReflection->getProperty('name');
         $nameProp->setAccessible(true);
         $nameProp->setValue($user, $name);
+
+        $cpfProp = $userReflection->getProperty('cpf');
+        $cpfProp->setAccessible(true);
+        $cpfProp->setValue($user, $cpf);
+
         $this->em->flush();
         return $user;
     }
