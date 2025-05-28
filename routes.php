@@ -18,8 +18,9 @@ $server->route("PUT", "/users/{id}", [UserController::class, 'update']);
 $server->route("DELETE", "/users/{id}", [UserController::class, 'destroy']);
 
 $server->route("GET", "/contacts", [ContactController::class, 'index']);
+$server->route("GET", "/contacts/create", [ContactController::class, 'create']);
 $server->route("POST", "/contacts", [ContactController::class, 'store']);
-$server->route("GET", "/contacts/{id}", [ContactController::class, 'show']);
+$server->route("GET", "/contacts/{id}/edit", [ContactController::class, 'edit']);
 $server->route("PUT", "/contacts/{id}", [ContactController::class, 'update']);
 $server->route("DELETE", "/contacts/{id}", [ContactController::class, 'destroy']);
 

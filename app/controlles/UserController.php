@@ -19,13 +19,12 @@ class UserController extends Controller
     public function index()
     {
         $search = trim($_GET['search'] ?? '');
-        if ($search !== '') {
-            $users = $this->repo->searchByName($search);
-        } else {
-            $users = $this->repo->all();
-        }
+        $users = match (true) {
+            $search !== '' => $this->repo->searchByName($search),
+            default => $this->repo->all(),
+        };
 
-        $this->render('users/index', ['users' => $users, 'succes' => $this->flashMessage]);
+        $this->render('users/index', ['users' => $users, 'sucess' => $this->flashMessage]);
     }
 
     public function create()
