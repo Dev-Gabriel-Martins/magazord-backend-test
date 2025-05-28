@@ -97,7 +97,7 @@ docker compose exec php php core/bin/doctrine orm:schema-tool:create
 ![image](https://github.com/user-attachments/assets/4f6b0b69-6a03-49f1-8d59-7385fd45e8af)
 
 
-**Tela de 404 NOT FOUND**[✅] </br>
+**Tela de 404**[✅] NOT FOUND</br>
 ![image](https://github.com/user-attachments/assets/583fa841-1298-4990-af93-7092957966f8)
 
 
