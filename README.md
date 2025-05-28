@@ -7,7 +7,7 @@
 
 # Teste Técnico Braavo - Magazord
 
-#### Fico muito feliz que vc estejá aqui, fiz o teste com muito carrinho e dei o meu melhor, espero que goste!
+#### Fico muito feliz que você estejá aqui, fiz o teste com muito carrinho e dei o meu melhor, espero que goste!
 
 
 
@@ -55,7 +55,7 @@ chmod +x script.sh && ./script.sh
 ```
 🚧 Necessário ter o [Docker](https://www.docker.com/) instalado. O script se encontram na raiz do projeto. Será necssario liberar o acesso a porta 3306
 
-O script é bem simple, subir os conteines, instalar as dependências e criar o banco usando o schema do doctrine
+O script é bem simple, sube os conteines, instala as dependências e criar o banco usando o schema do doctrine
 
 ### Usando Docker:
 
