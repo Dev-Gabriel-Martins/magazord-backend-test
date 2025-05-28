@@ -47,6 +47,10 @@ Este sistema é um gerenciador de contatos, desenvolvido do zero, com foco em bo
 ---
 
 ## Como rodar o projeto
+```bash
+git clone https://github.com/Dev-Gabriel-Martins/magazord-backend-test.git
+cd magazord-backend-test
+```
 
 ### Usando Script Automatizado:
 
